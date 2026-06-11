@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DUIN DAW — AI-Powered Music Studio</title>
+  <style>
+    :root {
+      --bg: #08080e;
+      --bg-2: #0f0f18;
+      --text: #d8d8e8;
+      --muted: #7878a0;
+      --accent-1: #ff3366;
+      --accent-2: #6633ff;
+      --accent-gradient: linear-gradient(135deg, #ff3366, #6633ff);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 80px 24px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(255,51,102,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(102,51,255,0.08) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 96px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero p.tagline {
+      font-size: clamp(18px, 3vw, 24px);
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    .price {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .price span { font-size: 20px; color: var(--muted); font-weight: 400; }
+    .cta {
+      display: inline-block;
+      padding: 18px 48px;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 24px;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255,51,102,0.3);
+    }
+    .cta-secondary {
+      display: inline-block;
+      margin-left: 16px;
+      padding: 18px 32px;
+      font-size: 16px;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--muted);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .cta-secondary:hover { border-color: var(--text); }
+
+    /* Features */
+    .features {
+      padding: 100px 24px;
+      background: var(--bg-2);
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 60px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 32px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,51,102,0.3);
+    }
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .card p { color: var(--muted); font-size: 15px; }
+    .card .icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--accent-gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
+    }
+
+    /* Quote */
+    .quote {
+      padding: 100px 24px;
+      text-align: center;
+    }
+    .quote p {
+      font-size: clamp(20px, 4vw, 32px);
+      font-style: italic;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .quote .author {
+      margin-top: 24px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer a { color: var(--accent-1); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .cta, .cta-secondary { display: block; margin: 12px auto; width: 100%; max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>DUIN DAW</h1>
+      <p class="tagline">The AI-powered studio that turns your voice into music. Multi-track timeline, 34 scales, 15 genre templates — all in one beautiful app.</p>
+      <div class="price">$29 <span>one-time</span></div>
+      <p style="color: var(--muted); font-size: 14px; margin-top: 4px;">No subscription. No cloud lock-in. Yours forever.</p>
+      <a href="https://gumroad.com" class="cta">Buy Now</a>
+      <a href="#features" class="cta-secondary">Explore Features</a>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Everything you need to make music</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">🎹</div>
+          <h3>AI Assistant</h3>
+          <p>Say "make a trap beat at 140 BPM" and the DAW generates it. Natural language control over your entire session.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🎚️</div>
+          <h3>Dual View</h3>
+          <p>Session view for launching clips. Arrangement view for fine-tuning. Switch instantly, just like Ableton.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🎵</div>
+          <h3>Music Theory Engine</h3>
+          <p>34 scales, 40+ chord types, 25 progressions, interactive circle of fifths. Never get stuck again.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🥁</div>
+          <h3>15 Genre Templates</h3>
+          <p>Techno, house, DnB, hip-hop, trap, dubstep, lofi, reggaeton — load a template and start creating in seconds.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🎛️</div>
+          <h3>Built-in Synths & FX</h3>
+          <p>8 synthesizers, 7 effects chains, per-track automation. All running in real-time via Tone.js.</p>
+        </div>
+        <div class="card">
+          <div class="icon">💾</div>
+          <h3>Local-First</h3>
+          <p>Your projects stay on your machine. No cloud required. Export WAV, MIDI, and project files anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <p>"Music sounds better with you."</p>
+    <div class="author">— Stardust, and also this DAW</div>
+  </section>
+
+  <footer>
+    <p>Built with love, Electron, Tone.js, and FastAPI. <a href="https://github.com/donn-duinn/duin-daw">Open source</a> at its core.</p>
+    <p style="margin-top: 8px;">© DUIN. Music belongs to everyone.</p>
+  </footer>
+
+</body>
+</html>
